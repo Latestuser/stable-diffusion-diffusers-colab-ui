@@ -1,6 +1,7 @@
 import os
 import shutil
 from ipywidgets import Image, HBox, VBox, Button, Layout
+from IPython.display import display, FileLink
 from typing import List
 
 def get_image_previews(paths: List[str], width: int, height: int,
@@ -35,5 +36,14 @@ def _add_favourite_button(filepath: str, to_dir:str) -> Button:
     btn = Button(description="Favourite", tooltip=filepath, layout=Layout(width="99%"))
     def btn_handler(b):
         copy_file(filepath, to_dir)
+    btn.on_click(btn_handler)
+    return btn
+
+def _add_download_button(filepath: str) -> Button:
+    btn = Button(description="Download", tooltip=filepath, layout=Layout(width="99%"))
+    def btn_handler(b):
+        # 使用 FileLink 创建下载链接并显示
+        link = FileLink(filepath, result_html_prefix="Click to download: ")
+        display(link)
     btn.on_click(btn_handler)
     return btn
