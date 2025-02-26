@@ -45,7 +45,8 @@ class BaseUI:
     def save_image_with_metadata(self, image, path, additional_data = ""):
         meta = PngInfo()
         meta.add_text("Data", self._metadata + additional_data)
-        image.save(path, pnginfo=meta)
+        #image.save(path, pnginfo=meta)
+        image.save(path, format="JPEG", quality=90)
 
     def get_positive_prompt(self):
         return self.preprocess_prompt(self.positive_prompt.value)
