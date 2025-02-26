@@ -10,6 +10,7 @@ def load_image_metadata(filepath: str):
     return prompt, negative_prompt
 
 def save_image_with_metadata(image, path, metadata_provider, additional_data = ""):
-    meta = PngInfo()
-    meta.add_text("Data", metadata_provider.metadata + additional_data)
-    image.save(path, pnginfo=meta)
+    #meta = PngInfo()
+    #meta.add_text("Data", metadata_provider.metadata + additional_data)
+    #image.save(path, pnginfo=meta)
+    image.save(path, format="JPEG", quality=90)
