@@ -15,7 +15,8 @@ def get_image_previews(paths: List[str], width: int, height: int,
             height=height,
         )
         btn = _add_favourite_button(filepath, favourite_dir)
-        wgt = VBox([preview, btn])
+        download_btn = _add_download_button(filepath)  # 新增下载按钮
+        wgt = VBox([preview, btn, download_btn])
         wgts.append(wgt)
 
     return HBox(wgts)
